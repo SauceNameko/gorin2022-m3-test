@@ -19,11 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-// Route::middleware("guest")->group(function () {
+Route::middleware("guest")->group(function () {
 Route::get("/admin", [LoginController::class, "login"])->name("login");
 Route::post("/admin", [LoginController::class, "check"])->name("check");
-// });
-// Route::middleware("auth")->group(function () {
+});
+Route::middleware("auth")->group(function () {
 Route::get("/admin/logout", [LoginController::class, "logout"])->name("logout");
 Route::get('/admin/dashboard', [ItemController::class, "index"])->name("dashboard");
 Route::get('/admin/item/create', [ItemController::class, "create"])->name("item_create");
@@ -38,4 +38,4 @@ Route::post('/admin/coupon/store', [CouponController::class, "store"])->name("co
 Route::get('/admin/coupon/edit/{id}', [CouponController::class, "edit"])->name("coupon_edit");
 Route::post('/admin/coupon/update/{id}', [CouponController::class, "update"])->name("coupon_update");
 Route::get('/admin/coupon/destroy/{id}', [CouponController::class, "destroy"])->name("coupon_destroy");
-// });
+});
